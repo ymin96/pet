@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Box from '@mui/material/Box';
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
@@ -21,3 +22,8 @@ export default function SearchField() {
     </Box>
   );
 }
+=======
+import React from 'react';
+import SearchBar from '@mui/material';
+
+>>>>>>> 4b692ee6fbc23f71fdf198e7808e07fcc76adb36
