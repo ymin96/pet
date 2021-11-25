@@ -1,8 +1,8 @@
-import {Button} from "@mui/material";
+import Button from "@mui/material/Button";
 
 export default function RootDomainButton() {
   return (
-      <div className="main-page-button">
+      <div className="button-group">
         <Button href="/" variant="outlined">
           홈으로(img tag 추가)
         </Button>
