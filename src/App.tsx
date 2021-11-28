@@ -1,10 +1,13 @@
+import { Skeleton } from '@mui/material';
 import React from 'react';
-import './App.css';
-import Header from "./page/Header";
+import CustomHeader from './components/common/Header/CustomHeader';
 
 function App() {
   return (
-      <Header></Header>
+      <>
+        <CustomHeader/>
+        <Skeleton variant="rectangular" height={350}/>
+      </>
   );
 }
 
