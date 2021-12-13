@@ -23,6 +23,8 @@ const ReactionInput = styled(Box)<HeaderInputProps>(({ mobile, theme }) => ({
               [theme.breakpoints.down("sm")]: { display: "none" },
           }),
 }));
+
+
 function HeaderInput({ mobile }: HeaderInputProps) {
     return (
         <ReactionInput pl={2} mobile={mobile}>

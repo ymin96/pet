@@ -5,13 +5,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import HeaderInput from "../HeaderInput";
+import HeaderInput from "./HeaderInput";
+import { Link } from "react-router-dom";
 
 export default function HeaderBottom() {
-    const pages = ["동물병원,약국", "유기견 보호/찾기", "반려동물정보", "커뮤니티"];
+    const pages = ["동물병원", "유기동물 보호소", "동물 판매소", "커뮤니티"];
+    const urls = ["/veterinary/1", "/shelter/1", "/store/1", "/temp"];
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -69,7 +70,7 @@ export default function HeaderBottom() {
                                 display: { xs: "block", md: "none" },
                             }}
                         >
-                            {pages.map((page) => (
+                            {pages.map((page, index) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
@@ -78,15 +79,17 @@ export default function HeaderBottom() {
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "space-evenly" } }}>
-                        {pages.map((page) => (
-                            <Typography
-                                variant="h6"
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ fontWeight: "bold", my: 2, color: "gray", display: "block", cursor: "pointer" }}
-                            >
-                                {page}
-                            </Typography>
+                        {pages.map((page, index) => (
+                            <Link to={urls[index]} style={{textDecoration:"none"}}>
+                                <Typography
+                                    variant="h6"
+                                    key={page}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ fontWeight: "bold", my: 2, color: "gray", display: "block", cursor: "pointer" }}
+                                >
+                                    {page}
+                                </Typography>
+                            </Link>
                         ))}
                     </Box>
                 </Toolbar>
