@@ -8,14 +8,16 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import rootReducer from "./modules";
 import { BrowserRouter } from "react-router-dom";
-
+import { RenderAfterNavermapsLoaded } from "react-naver-maps";
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <RenderAfterNavermapsLoaded ncpClientId={"q7rc5r2lpw"}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </RenderAfterNavermapsLoaded>
     </Provider>,
     document.getElementById("root")
 );

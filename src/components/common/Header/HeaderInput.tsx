@@ -5,6 +5,8 @@ import React from "react";
 
 type HeaderInputProps = {
     mobile: boolean;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    searchRef?: React.Ref<HTMLInputElement>;
 };
 
 const ReactionInput = styled(Box)<HeaderInputProps>(({ mobile, theme }) => ({
@@ -24,12 +26,11 @@ const ReactionInput = styled(Box)<HeaderInputProps>(({ mobile, theme }) => ({
           }),
 }));
 
-
-function HeaderInput({ mobile }: HeaderInputProps) {
+function HeaderInput({ mobile, onClick, searchRef }: HeaderInputProps) {
     return (
         <ReactionInput pl={2} mobile={mobile}>
-            <InputBase sx={{ flex: 1 }} placeholder="병원 검색" />
-            <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+            <InputBase sx={{ flex: 1 }} placeholder="병원 검색" inputRef={searchRef} />
+            <IconButton type="submit" sx={{ p: "10px" }} aria-label="search" onClick={onClick}>
                 <Search />
             </IconButton>
         </ReactionInput>

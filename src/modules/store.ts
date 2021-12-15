@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import { ThunkAction } from "redux-thunk";
 import { createAction, createReducer } from "typesafe-actions";
 import { RootState } from ".";
-import { getStoreFile, StoreListPage } from "../api/pet";
+import { getNearestStore, getStoreFile, StoreListPage } from "../api/pet";
 
 //액션 타입 선언
 const GET_STORE = "store/GET_STORE" as const;
@@ -14,11 +14,23 @@ export const getStore = createAction(GET_STORE)();
 export const getStoreSuccess = createAction(GET_STORE_SUCCESS)<StoreListPage>();
 export const getStoreError = createAction(GET_STORE_ERROR)<unknown>();
 
-export function getStoreThunk(offset: number, limit: number = 12, table:string): ThunkAction<void, RootState, null, StoreAction> {
+export function getStoreThunk(offset: number, limit: number = 12, table:string, title:string|undefined): ThunkAction<void, RootState, null, StoreAction> {
     return async (dispatch) => {
         dispatch(getStore());
         try {
-            const storePage = await getStoreFile(offset, limit, table);
+            const storePage = await getStoreFile(offset, limit, table, title);
+            dispatch(getStoreSuccess(storePage));
+        } catch (e) {
+            dispatch(getStoreError(e));
+        }
+    };
+}
+
+export function getNearestStoreThunk(lat:number, lng: number): ThunkAction<void, RootState, null, StoreAction>{
+    return async (dispatch) => {
+        dispatch(getStore());
+        try {
+            const storePage = await getNearestStore(lat,lng);
             dispatch(getStoreSuccess(storePage));
         } catch (e) {
             dispatch(getStoreError(e));

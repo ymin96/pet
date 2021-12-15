@@ -14,7 +14,7 @@ function StoreList({ storeList }: StoreListPros) {
             {storeList.map((store, index) => (
                 <Grid key={index} item container xs={12} md={4} justifyContent="center">
                     <Grid item >
-                        <StoreItem storeItem={store}/>
+                        <StoreItem storeItem={store} rand={Math.floor(Math.random() * 3)}/>
                     </Grid>
                 </Grid>
             ))}

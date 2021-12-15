@@ -17,7 +17,7 @@ function PharmacyListPage({match}: RouteComponentProps<PharmacyListPageProps>) {
             <Container>
                 <Grid container direction="column">
                     <BreadCrumb contents="동물 약국"/>
-                    <StoreListContainer page={page} table="pet_pharmacy"/>
+                    <StoreListContainer page={page} table="pet_pharmacy" prefix="pharmacy"/>
                 </Grid>
             </Container>
         </div>

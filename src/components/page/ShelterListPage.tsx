@@ -17,7 +17,7 @@ function ShelterListPage({match}: RouteComponentProps<ShelterListPageProps>) {
             <Container>
                 <Grid container direction="column">
                     <BreadCrumb contents="유기동물 보호소"/>
-                    <StoreListContainer page={page} table="pet_shelter"/>
+                    <StoreListContainer page={page} table="pet_shelter" prefix="shelter"/>
                 </Grid>
             </Container>
         </div>

@@ -9,10 +9,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import HeaderInput from "./HeaderInput";
 import { Link } from "react-router-dom";
+import HeaderInputContainer from "../../../containers/HeaderInputContainer";
+import { useDispatch } from "react-redux";
+import { setSearch } from "../../../modules/search";
 
 export default function HeaderBottom() {
-    const pages = ["동물병원", "유기동물 보호소", "동물 판매소", "커뮤니티"];
-    const urls = ["/veterinary/1", "/shelter/1", "/store/1", "/temp"];
+    const pages = ["동물병원", "유기동물 보호소", "동물 판매소", "가까운 병원"];
+    const urls = ["/veterinary/1", "/shelter/1", "/store/1", "/nav"];
+    const dispatch = useDispatch();
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
@@ -22,6 +26,7 @@ export default function HeaderBottom() {
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
+        dispatch(setSearch(""));
     };
 
     return (
@@ -39,7 +44,7 @@ export default function HeaderBottom() {
                 }}
             >
                 <Toolbar disableGutters>
-                    <HeaderInput mobile={true} />
+                    <HeaderInputContainer mobile={true} />
 
                     <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none", flexDirection: "row-reverse" } }}>
                         <IconButton
@@ -72,7 +77,9 @@ export default function HeaderBottom() {
                         >
                             {pages.map((page, index) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Link to={urls[index]} style={{ textDecoration: "none", color:"gray" }}>
+                                        <Typography variant="h6">{page}</Typography>
+                                    </Link>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -80,7 +87,7 @@ export default function HeaderBottom() {
 
                     <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "space-evenly" } }}>
                         {pages.map((page, index) => (
-                            <Link to={urls[index]} style={{textDecoration:"none"}}>
+                            <Link to={urls[index]} style={{ textDecoration: "none" }}>
                                 <Typography
                                     variant="h6"
                                     key={page}
